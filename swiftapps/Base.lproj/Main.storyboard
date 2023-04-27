@@ -140,7 +140,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="GO ID"/>
                                 <connections>
-                                    <action selector="goID:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GAw-dD-nUU"/>
+                                    <action selector="goID:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5nc-Nc-Fii"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMy-dl-fgM">
@@ -158,8 +158,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="QLc-bp-D0Q"/>
                     <connections>
+                        <outlet property="goID" destination="igD-vI-xya" id="61B-LC-oXQ"/>
+                        <outlet property="hitMe" destination="RzH-M1-iBM" id="GLt-5l-eKV"/>
                         <outlet property="roundCounter" destination="aeh-CU-LPa" id="aSZ-WA-Ai1"/>
+                        <outlet property="roundLabel" destination="3rr-QT-LcI" id="Rpd-1U-Kv9"/>
                         <outlet property="scoreCounter" destination="7Mh-0S-DDZ" id="mbl-qd-VES"/>
+                        <outlet property="scoreLabel" destination="d8B-hJ-U1Q" id="1O8-Jh-8nb"/>
                         <outlet property="slider" destination="4J4-r0-NnY" id="kgY-9D-DoN"/>
                         <outlet property="startOverButton" destination="3Pa-3A-25A" id="zKE-g6-fNo"/>
                         <outlet property="targetLabel" destination="GYw-Xp-Yhp" id="uQS-PD-eKo"/>

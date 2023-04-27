@@ -14,13 +14,19 @@ class ViewController: UIViewController {
     var score = 0
     @IBOutlet var slider: UISlider!
     @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var roundLabel: UILabel!
     @IBOutlet var roundCounter: UILabel!
     @IBOutlet var scoreCounter: UILabel!
     @IBOutlet var startOverButton: UIButton!
+    @IBOutlet var goID: UIButton!
+    @IBOutlet var hitMe: UIButton!
+    @IBOutlet var scoreLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         startNewRound()
         addConstraints()
+        startOverButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        buttonModifire()
     }
     @IBAction func switchWithIdentificator(_ sender: Any) {
         performSegue(withIdentifier: "goVC", sender: nil)
@@ -68,7 +74,7 @@ class ViewController: UIViewController {
         case 1, -1:
             score += 4
         case 0:
-            score += 5
+            score += 30
         default: break
         }
     }
@@ -80,14 +86,57 @@ class ViewController: UIViewController {
     }
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
+        
         // Delete automatic constraints
         startOverButton.translatesAutoresizingMaskIntoConstraints = false
-        // Add
+        scoreCounter.translatesAutoresizingMaskIntoConstraints = false
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        goID.translatesAutoresizingMaskIntoConstraints = false
+        roundCounter.translatesAutoresizingMaskIntoConstraints = false
+        roundLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Add constraints
         constraints.append(startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16))
         constraints.append(startOverButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16))
         
-        //Activate
+        constraints.append(scoreLabel.centerXAnchor.constraint(equalTo: startOverButton.centerXAnchor, constant: view.frame.width/4))
+        constraints.append(scoreLabel.centerYAnchor.constraint(equalTo: startOverButton.centerYAnchor))
+
+        constraints.append(scoreCounter.centerXAnchor.constraint(equalTo: scoreLabel.trailingAnchor, constant: 20))
+        constraints.append(scoreCounter.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor))
+        
+        
+        constraints.append(goID.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16))
+        constraints.append(goID.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16))
+
+        constraints.append(roundCounter.centerXAnchor.constraint(equalTo: goID.centerXAnchor, constant: -view.frame.width/4))
+        constraints.append(roundCounter.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor))
+
+        constraints.append(roundLabel.trailingAnchor.constraint(equalTo: roundCounter.leadingAnchor, constant: -20))
+        constraints.append(roundLabel.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor))
         NSLayoutConstraint.activate(constraints)
+    }
+
+    @objc func buttonTapped() {
+        // добавляем анимацию на кнопку
+        UIView.animate(withDuration: 0.5, animations: { [self] in
+            self.startOverButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.5, animations: { [self] in
+                self.startOverButton.transform = CGAffineTransform.identity
+            })
+        })
+    }
+    func buttonModifire() {
+        hitMe.backgroundColor = UIColor(ciColor: .blue)
+        hitMe.titleLabel?.textColor = UIColor(ciColor: .white)
+        hitMe.layer.cornerRadius = 10
+        hitMe.layer.masksToBounds = true
+        
+        startOverButton.backgroundColor = UIColor(ciColor: .white)
+        startOverButton.titleLabel?.textColor = UIColor(ciColor: .blue)
+        startOverButton.layer.cornerRadius = 10
+        startOverButton.layer.masksToBounds = true
     }
 }
 
