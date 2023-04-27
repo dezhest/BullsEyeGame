@@ -16,12 +16,21 @@ class ViewController: UIViewController {
     @IBOutlet var targetLabel: UILabel!
     @IBOutlet var roundCounter: UILabel!
     @IBOutlet var scoreCounter: UILabel!
+    @IBOutlet var startOverButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         startNewRound()
-        
+        addConstraints()
+    }
+    @IBAction func switchWithIdentificator(_ sender: Any) {
+        performSegue(withIdentifier: "goVC", sender: nil)
     }
     
+    @IBAction func goID(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let newViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! SecondScreen
+        self.present(newViewController, animated: true, completion: nil)
+    }
     @IBAction func showAlert() {
         let message = "The target value is \(targetValue)" +
         "\n The value of the slider is \(currentValue)"
@@ -65,9 +74,20 @@ class ViewController: UIViewController {
     }
     @IBAction func startOverPressed() {
         round = 1
-        scoreCounter.text = String(score)
         score = 0
+        scoreCounter.text = String(score)
         updateLabels()
+    }
+    private func addConstraints() {
+        var constraints = [NSLayoutConstraint]()
+        // Delete automatic constraints
+        startOverButton.translatesAutoresizingMaskIntoConstraints = false
+        // Add
+        constraints.append(startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16))
+        constraints.append(startOverButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -16))
+        
+        //Activate
+        NSLayoutConstraint.activate(constraints)
     }
 }
 
