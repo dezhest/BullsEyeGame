@@ -13,7 +13,7 @@
 		C3707E0C29F93A7B001E6A2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3707E0A29F93A7B001E6A2C /* Main.storyboard */; };
 		C3707E0E29F93A80001E6A2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3707E0D29F93A80001E6A2C /* Assets.xcassets */; };
 		C3707E1129F93A80001E6A2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3707E0F29F93A80001E6A2C /* LaunchScreen.storyboard */; };
-		C3707E1929F9AC6B001E6A2C /* SecondScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1829F9AC6B001E6A2C /* SecondScreen.swift */; };
+		C3707E1929F9AC6B001E6A2C /* StatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1829F9AC6B001E6A2C /* StatViewController.swift */; };
 		C3707E1B29F9BF6A001E6A2C /* IdentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1A29F9BF6A001E6A2C /* IdentView.swift */; };
 		C3707E1D29F9C025001E6A2C /* simpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1C29F9C025001E6A2C /* simpleView.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		C3707E0D29F93A80001E6A2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C3707E1029F93A80001E6A2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C3707E1229F93A80001E6A2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C3707E1829F9AC6B001E6A2C /* SecondScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondScreen.swift; sourceTree = "<group>"; };
+		C3707E1829F9AC6B001E6A2C /* StatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewController.swift; sourceTree = "<group>"; };
 		C3707E1A29F9BF6A001E6A2C /* IdentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentView.swift; sourceTree = "<group>"; };
 		C3707E1C29F9C025001E6A2C /* simpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simpleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +65,7 @@
 				C3707E0429F93A7B001E6A2C /* AppDelegate.swift */,
 				C3707E0629F93A7B001E6A2C /* SceneDelegate.swift */,
 				C3707E0829F93A7B001E6A2C /* ViewController.swift */,
-				C3707E1829F9AC6B001E6A2C /* SecondScreen.swift */,
+				C3707E1829F9AC6B001E6A2C /* StatViewController.swift */,
 				C3707E0A29F93A7B001E6A2C /* Main.storyboard */,
 				C3707E1A29F9BF6A001E6A2C /* IdentView.swift */,
 				C3707E1C29F9C025001E6A2C /* simpleView.swift */,
@@ -148,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3707E0929F93A7B001E6A2C /* ViewController.swift in Sources */,
-				C3707E1929F9AC6B001E6A2C /* SecondScreen.swift in Sources */,
+				C3707E1929F9AC6B001E6A2C /* StatViewController.swift in Sources */,
 				C3707E1D29F9C025001E6A2C /* simpleView.swift in Sources */,
 				C3707E0529F93A7B001E6A2C /* AppDelegate.swift in Sources */,
 				C3707E1B29F9BF6A001E6A2C /* IdentView.swift in Sources */,

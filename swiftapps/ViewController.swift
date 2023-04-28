@@ -18,26 +18,32 @@ class ViewController: UIViewController {
     @IBOutlet var roundCounter: UILabel!
     @IBOutlet var scoreCounter: UILabel!
     @IBOutlet var startOverButton: UIButton!
-    @IBOutlet var goID: UIButton!
-    @IBOutlet var hitMe: UIButton!
     @IBOutlet var scoreLabel: UILabel!
+    let hitMe = UIButton()
+    let goID = UIButton()
+    let identifierButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        startNewRound()
-        addConstraints()
         startOverButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        hitMe.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+        goID.addTarget(self, action: #selector(navigateByID), for: .touchUpInside)
+        identifierButton.addTarget(self, action: #selector(switchWithIdentifier), for: .touchUpInside)
+        startNewRound()
         buttonModifire()
+        addConstraints()
     }
-    @IBAction func switchWithIdentificator(_ sender: Any) {
+    @objc func navigateByID() {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let statViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! StatViewController
+        statViewController.score = score
+        present(statViewController, animated: true, completion: nil)
+    }
+    @objc func switchWithIdentifier(_ sender: Any) {
         performSegue(withIdentifier: "goVC", sender: nil)
     }
     
-    @IBAction func goID(_ sender: Any) {
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! SecondScreen
-        self.present(newViewController, animated: true, completion: nil)
-    }
-    @IBAction func showAlert() {
+    @objc func showAlert() {
         let message = "The target value is \(targetValue)" +
         "\n The value of the slider is \(currentValue)"
         let alert = UIAlertController(title: "title", message: message, preferredStyle: .alert)
@@ -86,7 +92,6 @@ class ViewController: UIViewController {
     }
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
-        
         // Delete automatic constraints
         startOverButton.translatesAutoresizingMaskIntoConstraints = false
         scoreCounter.translatesAutoresizingMaskIntoConstraints = false
@@ -94,6 +99,8 @@ class ViewController: UIViewController {
         goID.translatesAutoresizingMaskIntoConstraints = false
         roundCounter.translatesAutoresizingMaskIntoConstraints = false
         roundLabel.translatesAutoresizingMaskIntoConstraints = false
+        hitMe.translatesAutoresizingMaskIntoConstraints = false
+        identifierButton.translatesAutoresizingMaskIntoConstraints = false
         
         // Add constraints
         constraints.append(startOverButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16))
@@ -114,6 +121,12 @@ class ViewController: UIViewController {
 
         constraints.append(roundLabel.trailingAnchor.constraint(equalTo: roundCounter.leadingAnchor, constant: -20))
         constraints.append(roundLabel.centerYAnchor.constraint(equalTo: scoreLabel.centerYAnchor))
+
+        constraints.append(hitMe.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0))
+        constraints.append(hitMe.bottomAnchor.constraint(equalTo: scoreCounter.topAnchor, constant: -50))
+        
+        constraints.append(identifierButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16))
+        constraints.append(identifierButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 16))
         NSLayoutConstraint.activate(constraints)
     }
 
@@ -128,15 +141,32 @@ class ViewController: UIViewController {
         })
     }
     func buttonModifire() {
-        hitMe.backgroundColor = UIColor(ciColor: .blue)
-        hitMe.titleLabel?.textColor = UIColor(ciColor: .white)
+        hitMe.setTitle("Check", for: .normal)
+        hitMe.backgroundColor = UIColor.blue
+        hitMe.titleLabel?.textColor = UIColor.white
         hitMe.layer.cornerRadius = 10
         hitMe.layer.masksToBounds = true
+        view.addSubview(hitMe)
         
-        startOverButton.backgroundColor = UIColor(ciColor: .white)
-        startOverButton.titleLabel?.textColor = UIColor(ciColor: .blue)
+        goID.setTitle("GO ID", for: .normal)
+        goID.backgroundColor = UIColor.blue
+        goID.titleLabel?.textColor = UIColor.white
+        goID.layer.cornerRadius = 10
+        goID.layer.masksToBounds = true
+        view.addSubview(goID)
+        
+        startOverButton.backgroundColor = UIColor.white
+        startOverButton.titleLabel?.textColor = UIColor.blue
         startOverButton.layer.cornerRadius = 10
         startOverButton.layer.masksToBounds = true
+        
+        identifierButton.setTitle("Identifire", for: .normal)
+        identifierButton.backgroundColor = UIColor.blue
+        identifierButton.titleLabel?.textColor = UIColor.white
+        identifierButton.layer.cornerRadius = 10
+        identifierButton.layer.masksToBounds = true
+        view.addSubview(identifierButton)
     }
+
 }
 
