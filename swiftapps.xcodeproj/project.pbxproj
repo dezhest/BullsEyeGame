@@ -16,6 +16,7 @@
 		C3707E1929F9AC6B001E6A2C /* StatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1829F9AC6B001E6A2C /* StatViewController.swift */; };
 		C3707E1B29F9BF6A001E6A2C /* IdentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1A29F9BF6A001E6A2C /* IdentView.swift */; };
 		C3707E1D29F9C025001E6A2C /* simpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3707E1C29F9C025001E6A2C /* simpleView.swift */; };
+		C3E1930529FD369400F85C3D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E1930429FD369400F85C3D /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C3707E1829F9AC6B001E6A2C /* StatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatViewController.swift; sourceTree = "<group>"; };
 		C3707E1A29F9BF6A001E6A2C /* IdentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentView.swift; sourceTree = "<group>"; };
 		C3707E1C29F9C025001E6A2C /* simpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simpleView.swift; sourceTree = "<group>"; };
+		C3E1930429FD369400F85C3D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				C3707E0429F93A7B001E6A2C /* AppDelegate.swift */,
 				C3707E0629F93A7B001E6A2C /* SceneDelegate.swift */,
 				C3707E0829F93A7B001E6A2C /* ViewController.swift */,
+				C3E1930429FD369400F85C3D /* Model.swift */,
 				C3707E1829F9AC6B001E6A2C /* StatViewController.swift */,
 				C3707E0A29F93A7B001E6A2C /* Main.storyboard */,
 				C3707E1A29F9BF6A001E6A2C /* IdentView.swift */,
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3E1930529FD369400F85C3D /* Model.swift in Sources */,
 				C3707E0929F93A7B001E6A2C /* ViewController.swift in Sources */,
 				C3707E1929F9AC6B001E6A2C /* StatViewController.swift in Sources */,
 				C3707E1D29F9C025001E6A2C /* simpleView.swift in Sources */,

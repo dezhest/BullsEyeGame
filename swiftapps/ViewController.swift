@@ -8,24 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var targetValue = 0
-    var currentValue = 0
-    var round = 0
-    var score = 0
+    var model = Model()
+    
     @IBOutlet var slider: UISlider!
     @IBOutlet var targetLabel: UILabel!
     @IBOutlet var roundLabel: UILabel!
     @IBOutlet var roundCounter: UILabel!
     @IBOutlet var scoreCounter: UILabel!
-    @IBOutlet var startOverButton: UIButton!
     @IBOutlet var scoreLabel: UILabel!
     let hitMe = UIButton()
     let goID = UIButton()
     let identifierButton = UIButton()
+    let startOverButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startOverButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        startOverButton.addTarget(self, action: #selector(startOverPressed), for: .touchUpInside)
         hitMe.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         goID.addTarget(self, action: #selector(navigateByID), for: .touchUpInside)
         identifierButton.addTarget(self, action: #selector(switchWithIdentifier), for: .touchUpInside)
@@ -36,7 +34,7 @@ class ViewController: UIViewController {
     @objc func navigateByID() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let statViewController = storyBoard.instantiateViewController(withIdentifier: "second") as! StatViewController
-        statViewController.score = score
+        statViewController.score = model.score
         present(statViewController, animated: true, completion: nil)
     }
     @objc func switchWithIdentifier(_ sender: Any) {
@@ -44,8 +42,8 @@ class ViewController: UIViewController {
     }
     
     @objc func showAlert() {
-        let message = "The target value is \(targetValue)" +
-        "\n The value of the slider is \(currentValue)"
+        let message = "The target value is \(model.targetValue)" +
+        "\n The value of the slider is \(model.currentValue)"
         let alert = UIAlertController(title: "title", message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "titleAction", style: .default)
         alert.addAction(action)
@@ -54,41 +52,42 @@ class ViewController: UIViewController {
         startNewRound()
     }
     @IBAction func sliderMoved(_ slider: UISlider) {
-        currentValue = lroundf(slider.value)
+        model.currentValue = lroundf(slider.value)
     }
     func startNewRound() {
-        targetValue = Int.random(in: 1...100)
-        currentValue = 50
-        slider.value = Float(currentValue)
-        round += 1
+        model.targetValue = Int.random(in: 1...100)
+        model.currentValue = 50
+        slider.value = Float(model.currentValue)
+        model.round += 1
         updateLabels()
-        scoreCounter.text = String(score)
+        scoreCounter.text = String(model.score)
     }
     func updateLabels() {
-        targetLabel.text = String(targetValue)
-        roundCounter.text = String(round)
+        targetLabel.text = String(model.targetValue)
+        roundCounter.text = String(model.round)
     }
 
     func scoreCalculate() {
-        switch targetValue - currentValue {
+        switch model.targetValue - model.currentValue {
         case 4, -4:
-            score += 1
+            model.score += 1
         case 3, -3:
-            score += 2
+            model.score += 2
         case 2, -2:
-            score += 3
+            model.score += 3
         case 1, -1:
-            score += 4
+            model.score += 4
         case 0:
-            score += 30
+            model.score += 30
         default: break
         }
     }
-    @IBAction func startOverPressed() {
-        round = 1
-        score = 0
-        scoreCounter.text = String(score)
+    @objc func startOverPressed() {
+        model.round = 1
+        model.score = 0
+        scoreCounter.text = String(model.score)
         updateLabels()
+        startOverAnimation()
     }
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
@@ -130,7 +129,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
 
-    @objc func buttonTapped() {
+    @objc func startOverAnimation() {
         // добавляем анимацию на кнопку
         UIView.animate(withDuration: 0.5, animations: { [self] in
             self.startOverButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
@@ -155,10 +154,12 @@ class ViewController: UIViewController {
         goID.layer.masksToBounds = true
         view.addSubview(goID)
         
-        startOverButton.backgroundColor = UIColor.white
-        startOverButton.titleLabel?.textColor = UIColor.blue
+        startOverButton.setTitle("Start Over", for: .normal)
+        startOverButton.backgroundColor = UIColor.blue
+        startOverButton.titleLabel?.textColor = UIColor.white
         startOverButton.layer.cornerRadius = 10
         startOverButton.layer.masksToBounds = true
+        view.addSubview(startOverButton)
         
         identifierButton.setTitle("Identifire", for: .normal)
         identifierButton.backgroundColor = UIColor.blue

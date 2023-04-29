@@ -100,15 +100,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pa-3A-25A">
-                                <rect key="frame" x="20" y="273" width="102" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Start Over"/>
-                                <connections>
-                                    <action selector="startOverPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="F53-fe-vUk"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeh-CU-LPa">
                                 <rect key="frame" x="436" y="281" width="18" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -136,7 +127,6 @@
                         <outlet property="scoreCounter" destination="7Mh-0S-DDZ" id="mbl-qd-VES"/>
                         <outlet property="scoreLabel" destination="d8B-hJ-U1Q" id="1O8-Jh-8nb"/>
                         <outlet property="slider" destination="4J4-r0-NnY" id="kgY-9D-DoN"/>
-                        <outlet property="startOverButton" destination="3Pa-3A-25A" id="zKE-g6-fNo"/>
                         <outlet property="targetLabel" destination="GYw-Xp-Yhp" id="uQS-PD-eKo"/>
                         <segue destination="jH6-p3-kHO" kind="show" identifier="goVC" id="Wbd-ea-OgW"/>
                     </connections>
