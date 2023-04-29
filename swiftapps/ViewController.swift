@@ -12,23 +12,26 @@ class ViewController: UIViewController {
     
     @IBOutlet var slider: UISlider!
     @IBOutlet var targetLabel: UILabel!
-    @IBOutlet var roundLabel: UILabel!
-    @IBOutlet var roundCounter: UILabel!
-    @IBOutlet var scoreCounter: UILabel!
-    @IBOutlet var scoreLabel: UILabel!
+    
+    let scoreCounter = UILabel()
+    let scoreLabel = UILabel()
+    let roundLabel = UILabel()
+    let roundCounter = UILabel()
     let hitMe = UIButton()
     let goID = UIButton()
     let identifierButton = UIButton()
     let startOverButton = UIButton()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startOverButton.addTarget(self, action: #selector(startOverPressed), for: .touchUpInside)
+        startOverButton.addTarget(self, action: #selector(startOverPressedView), for: .touchUpInside)
         hitMe.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         goID.addTarget(self, action: #selector(navigateByID), for: .touchUpInside)
         identifierButton.addTarget(self, action: #selector(switchWithIdentifier), for: .touchUpInside)
-        startNewRound()
+        startNewRoundView()
         buttonModifire()
+        labelModefire()
         addConstraints()
     }
     @objc func navigateByID() {
@@ -48,17 +51,15 @@ class ViewController: UIViewController {
         let action = UIAlertAction(title: "titleAction", style: .default)
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
-        scoreCalculate()
-        startNewRound()
+        model.scoreCalculate()
+        startNewRoundView()
     }
     @IBAction func sliderMoved(_ slider: UISlider) {
         model.currentValue = lroundf(slider.value)
     }
-    func startNewRound() {
-        model.targetValue = Int.random(in: 1...100)
-        model.currentValue = 50
+    func startNewRoundView() {
+        model.startNewRound()
         slider.value = Float(model.currentValue)
-        model.round += 1
         updateLabels()
         scoreCounter.text = String(model.score)
     }
@@ -67,24 +68,8 @@ class ViewController: UIViewController {
         roundCounter.text = String(model.round)
     }
 
-    func scoreCalculate() {
-        switch model.targetValue - model.currentValue {
-        case 4, -4:
-            model.score += 1
-        case 3, -3:
-            model.score += 2
-        case 2, -2:
-            model.score += 3
-        case 1, -1:
-            model.score += 4
-        case 0:
-            model.score += 30
-        default: break
-        }
-    }
-    @objc func startOverPressed() {
-        model.round = 1
-        model.score = 0
+    @objc func startOverPressedView() {
+        model.startOverPressed()
         scoreCounter.text = String(model.score)
         updateLabels()
         startOverAnimation()
@@ -167,6 +152,16 @@ class ViewController: UIViewController {
         identifierButton.layer.cornerRadius = 10
         identifierButton.layer.masksToBounds = true
         view.addSubview(identifierButton)
+    }
+    func labelModefire() {
+        scoreLabel.text = "Score"
+        view.addSubview(scoreLabel)
+        scoreCounter.text = "0"
+        view.addSubview(scoreCounter)
+        roundLabel.text = "Round:"
+        view.addSubview(roundLabel)
+        roundCounter.text = "1"
+        view.addSubview(roundCounter)
     }
 
 }
