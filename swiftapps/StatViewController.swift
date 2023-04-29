@@ -11,13 +11,17 @@ import UIKit
 class StatViewController: UIViewController {
     var score: Int = 0 {
         didSet {
-            scoreLabel.text = "Score: \(score)"
+            currentScore.text = "Current score: \(score)"
         }
     }
-    let scoreLabel = UILabel()
+    var bestScore = UserDefaults.standard.string(forKey: "score")
+    var bestRounds = UserDefaults.standard.string(forKey: "round")
+    let currentScore = UILabel()
+    let bestScoreLabel = UILabel()
         override func viewDidLoad() {
             super.viewDidLoad()
-            view.addSubview(scoreLabel)
+            view.addSubview(currentScore)
+            view.addSubview(bestScoreLabel)
             labelModifire()
             addConstraints()
         }
@@ -27,12 +31,20 @@ class StatViewController: UIViewController {
         }
     private func addConstraints() {
         var constraints = [NSLayoutConstraint]()
-        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        constraints.append(scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor))
-        constraints.append(scoreLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        currentScore.translatesAutoresizingMaskIntoConstraints = false
+        bestScoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        constraints.append(currentScore.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(currentScore.centerYAnchor.constraint(equalTo: view.centerYAnchor))
+        
+        constraints.append(bestScoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor))
+        constraints.append(bestScoreLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 50))
+        
+        
         NSLayoutConstraint.activate(constraints)
     }
     func labelModifire() {
-        scoreLabel.text = "Score: \(score)"
+        currentScore.text = "Current score: \(score)"
+        bestScoreLabel.text = "Best score \(bestScore ?? "0") for \(bestRounds ?? "0") rounds"
     }
 }

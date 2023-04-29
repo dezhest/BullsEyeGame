@@ -197,7 +197,6 @@ class ViewController: UIViewController {
         view.addSubview(label1)
         label100.text = "100"
         view.addSubview(label100)
-        targetLabel.text = "50"
         view.addSubview(targetLabel)
     }
     func sliderModifire() {
